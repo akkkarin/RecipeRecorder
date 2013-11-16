@@ -10,6 +10,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using RecipeRecorder.Resources;
 using RecipeRecorder.ViewModel;
+using BugSense;
 
 namespace RecipeRecorder
 {
@@ -77,10 +78,7 @@ namespace RecipeRecorder
         /// Constructor for the Application object.
         /// </summary>
         public App()
-        {
-            // Global handler for uncaught exceptions.
-            UnhandledException += Application_UnhandledException;
-
+        { 
             // Standard XAML initialization
             InitializeComponent();
 
@@ -89,6 +87,9 @@ namespace RecipeRecorder
 
             // Language display initialization
             InitializeLanguage();
+
+            // Initialize BugSense
+            BugSenseHandler.Instance.InitAndStartSession(this, "w8c32958");
 
             // Show graphics profiling information while debugging.
             if (Debugger.IsAttached)
