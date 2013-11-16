@@ -58,12 +58,13 @@ namespace RecipeRecorder
 
         private void ConfirmIcon_Click(object sender, EventArgs e)
         {
-
+            string ingredients = App.IngredientViewModel.GetJsonContent();
+            NavigationService.Navigate(new Uri("/CreateStepPage.xaml?Rname=" + this.RecipeName + "&Ingredients=" + ingredients, UriKind.Relative));
         }
 
         private void ExitIcon_Click(object sender, EventArgs e)
         {
-
+            NavigationService.GoBack();
         } 
 
     }

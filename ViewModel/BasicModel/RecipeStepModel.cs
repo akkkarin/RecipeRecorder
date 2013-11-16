@@ -9,11 +9,37 @@ namespace RecipeRecorder.ViewModel.BasicModel
 {
     public class RecipeStepModel : INotifyPropertyChanged
     {
+
         public RecipeStepModel(string dest, string image, string duration)
         {
             this._description = dest;
             this._image = image;
             this._duration = duration;
+        }
+
+        public RecipeStepModel(string stepNum, string dest, string image, string duration) 
+        {
+            this._stepNum = stepNum;
+            this._description = dest;
+            this._image = image;
+            this._duration = duration;
+        }
+
+        private string _stepNum;
+        public string StepNum
+        {
+            get
+            {
+                return _stepNum;
+            }
+            set
+            {
+                if (value != _stepNum)
+                {
+                    _stepNum = value;
+                    NotifyPropertyChanged("StepNum");
+                }
+            }
         }
 
         private string _description;

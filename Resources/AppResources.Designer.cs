@@ -79,6 +79,24 @@ namespace RecipeRecorder.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description of this step.
+        /// </summary>
+        public static string DescriptionHandsup {
+            get {
+                return ResourceManager.GetString("DescriptionHandsup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration of this step.
+        /// </summary>
+        public static string DurationHandsup {
+            get {
+                return ResourceManager.GetString("DurationHandsup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LeftToRight.
         /// </summary>
         public static string ResourceFlowDirection {

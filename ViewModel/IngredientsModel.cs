@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using RecipeRecorder.Resources;
 using RecipeRecorder.ViewModel.BasicModel;
+using Newtonsoft.Json;
 
 namespace RecipeRecorder.ViewModel
 {
@@ -49,6 +50,11 @@ namespace RecipeRecorder.ViewModel
         public void DeleteIngredientItem(IngredientModel obj)
         {
             this._ingredientItems.Remove(obj);
+        }
+
+        public string GetJsonContent() {
+            string jsonContents = JsonConvert.SerializeObject(this._ingredientItems);
+            return jsonContents;
         }
 
         #region PropertyChangedEventHandler

@@ -16,17 +16,27 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
-        <phone:Pivot Title="{Binding RecipeRecorder.Resources.ApplicationTitle}">
+        <phone:Pivot Title="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" >
             <!--Pivot item one-->
             <phone:PivotItem Header="item1">
-                <Grid/>
-            </phone:PivotItem>
-
-            <!--Pivot item two-->
-            <phone:PivotItem Header="item2">
-                <Grid/>
+                <Grid>
+                    <Image x:Name="StepImage" HorizontalAlignment="Left" Height="320" Margin="23,10,0,0" VerticalAlignment="Top" Width="303"/>
+                    <TextBox x:Name="StepDuration" HorizontalAlignment="Left" Height="62" Margin="10,330,0,0" TextWrapping="Wrap" Text="Duration of this step"
+                    Foreground="Gray" GotFocus="Text_GotFocus"
+                    LostFocus="Text_LostFocus" VerticalAlignment="Top" Width="329" FontSize="18"/>
+                    <TextBox x:Name="StepDescription" HorizontalAlignment="Left" Height="163" Margin="10,375,0,0" TextWrapping="Wrap" Text="Description of this step"
+                    Foreground="Gray" GotFocus="Text_GotFocus"
+                    LostFocus="Text_LostFocus" VerticalAlignment="Top" Width="436" FontSize="18"/>
+                </Grid>
             </phone:PivotItem>
         </phone:Pivot>
     </Grid>
-    
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar Mode="Default" Opacity="1.0" IsMenuEnabled="False" IsVisible="True">
+            <shell:ApplicationBarIconButton x:Name="FinishIcon" IconUri="/Images/check.png" Text="Finish" />
+            <shell:ApplicationBarIconButton x:Name="AddIcon" IconUri="/Images/add.png" Text="Add" />
+            <shell:ApplicationBarIconButton x:Name="DeleteIcon" IconUri="/Images/delete.png" Text="Delete" />
+            <shell:ApplicationBarIconButton x:Name="ExitIcon" IconUri="/Images/cancel.png" Text="Exit" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

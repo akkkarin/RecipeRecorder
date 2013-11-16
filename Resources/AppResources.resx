@@ -134,4 +134,10 @@
   <data name="ApplicationMainTitle" xml:space="preserve">
     <value>R-Recorder</value>
   </data>
+  <data name="DescriptionHandsup" xml:space="preserve">
+    <value>Description of this step</value>
+  </data>
+  <data name="DurationHandsup" xml:space="preserve">
+    <value>Duration of this step</value>
+  </data>
 </root>
