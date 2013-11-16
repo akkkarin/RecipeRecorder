@@ -12,9 +12,9 @@ using RecipeRecorder.ViewModel.BasicModel;
 
 namespace RecipeRecorder
 {
-    public partial class CreateRecipePage : PhoneApplicationPage
+    public partial class CreateIngredientPage : PhoneApplicationPage
     {
-        public CreateRecipePage()
+        public CreateIngredientPage()
         {
             InitializeComponent();
             DataContext = App.IngredientViewModel;

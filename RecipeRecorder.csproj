@@ -97,11 +97,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CreateRecipePage.xaml.cs">
-      <DependentUpon>CreateRecipePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CreateStepModel.xaml.cs">
-      <DependentUpon>CreateStepModel.xaml</DependentUpon>
+    <Compile Include="CreateIngredientPage.xaml.cs">
+      <DependentUpon>CreateIngredientPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -131,11 +128,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="CreateRecipePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CreateStepModel.xaml">
+    <Page Include="CreateIngredientPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
