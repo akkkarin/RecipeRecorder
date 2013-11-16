@@ -18,9 +18,9 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
 
         <!--Panorama control-->
-        <phone:Panorama Title="R-Recorder" Loaded="Panorama_Loaded">
+        <phone:Panorama Title="{Binding Path=LocalizedResources.ApplicationMainTitle, Source={StaticResource LocalizedStrings}}" Loaded="Panorama_Loaded">
             <phone:Panorama.Background>
-                <ImageBrush ImageSource="/Recipe;component/Assets/PanoramaBackground.png"/>
+                <ImageBrush ImageSource="/RecipeRecorder;component/Assets/PanoramaBackground.png"/>
             </phone:Panorama.Background>
 
 

@@ -40,23 +40,23 @@ namespace RecipeRecorder.ViewModel.BasicModel
             }
         }
 
-        private string _ingrediantName;
+        private string _ingredientName;
         /// <summary>
         /// Sample ViewModel property; this property is used in the view to display its value using a Binding.
         /// </summary>
         /// <returns></returns>
-        public string IngrediantName
+        public string IngredientName
         {
             get
             {
-                return _ingrediantName;
+                return _ingredientName;
             }
             set
             {
-                if (value != _ingrediantName)
+                if (value != _ingredientName)
                 {
-                    _ingrediantName = value;
-                    NotifyPropertyChanged("IngrediantName");
+                    _ingredientName = value;
+                    NotifyPropertyChanged("IngredientName");
                 }
             }
         }
@@ -72,7 +72,6 @@ namespace RecipeRecorder.ViewModel.BasicModel
             }
         }
         #endregion
-
-        public string _ingredientName { get; set; }
+         
     }
 }

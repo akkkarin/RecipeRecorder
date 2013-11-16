@@ -13,6 +13,23 @@ namespace RecipeRecorder.ViewModel
             this._ingredientItems = new ObservableCollection<IngredientModel>();
         }
 
+        private string _recipeName = "";
+        public string RecipeName
+        {
+            get
+            {
+                return _recipeName;
+            }
+            set
+            {
+                if (value != _recipeName)
+                {
+                    _recipeName = value;
+                    NotifyPropertyChanged("RecipeName");
+                }
+            }
+        }
+
         private ObservableCollection<IngredientModel> _ingredientItems;
         public ObservableCollection<IngredientModel> IngredientItems
         {
@@ -24,12 +41,12 @@ namespace RecipeRecorder.ViewModel
             }
         }
 
-        public void AddIngrediantItem(string amount, string name)
+        public void AddIngredientItem(string amount, string name)
         {
             this._ingredientItems.Add(new IngredientModel(amount, name));
         }
 
-        public void DeleteIngrediantItem(IngredientModel obj)
+        public void DeleteIngredientItem(IngredientModel obj)
         {
             this._ingredientItems.Remove(obj);
         }

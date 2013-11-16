@@ -25,22 +25,25 @@ namespace RecipeRecorder
         {
             base.OnNavigatedTo(e);
             string msg = "";
-            if (NavigationContext.QueryString.TryGetValue("rname", out msg))
+            if (NavigationContext.QueryString.TryGetValue("Rname", out msg))
+            { 
                 this.RecipeName = msg;
+                App.IngredientViewModel.RecipeName = msg;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (AmountText.Text.Length > 0 && IngrediantText.Text.Length > 0)
+            if (AmountText.Text.Length > 0 && IngredientText.Text.Length > 0)
             {
                 string amount = AmountText.Text;
-                string name = IngrediantText.Text;
+                string name = IngredientText.Text;
 
-                App.IngredientViewModel.AddIngrediantItem(amount, name);
+                App.IngredientViewModel.AddIngredientItem(amount, name);
 
                 this.Focus();
                 AmountText.Text = "";
-                IngrediantText.Text = "";
+                IngredientText.Text = "";
 
             }
         }
@@ -49,14 +52,19 @@ namespace RecipeRecorder
         {
             var element = (FrameworkElement)sender;
             IngredientModel obj = element.DataContext as IngredientModel;
-            App.IngredientViewModel.DeleteIngrediantItem(obj);
+            App.IngredientViewModel.DeleteIngredientItem(obj);
             this.Focus();
         }
-        private void Confrim_Click(object sender, RoutedEventArgs e)
+
+        private void ConfirmIcon_Click(object sender, EventArgs e)
         {
-            //hihihihihihihihihi
+
         }
-        private void Quit_Click(object sender, RoutedEventArgs e) { }
+
+        private void ExitIcon_Click(object sender, EventArgs e)
+        {
+
+        } 
 
     }
 }
