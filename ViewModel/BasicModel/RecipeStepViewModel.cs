@@ -1,27 +1,35 @@
-﻿using System;
+﻿using RecipeRecorder.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace RecipeRecorder.ViewModel.BasicModel
 {
-    public class RecipeStepModel : INotifyPropertyChanged
+    public class RecipeStepViewModel : INotifyPropertyChanged
     {
+        public RecipeStepViewModel() {
+            this._stepNum = "";
+            this._description = AppResources.DescriptionHandsup;
+            this.Image = new Uri("/Images/edit.png", UriKind.RelativeOrAbsolute);
+            this._duration = AppResources.DurationHandsup;
+        }
 
-        public RecipeStepModel(string dest, string image, string duration)
+        public RecipeStepViewModel(string dest, string image, string duration)
         {
             this._description = dest;
-            this._image = image;
+            this._image = new Uri(image, UriKind.RelativeOrAbsolute);
             this._duration = duration;
         }
 
-        public RecipeStepModel(string stepNum, string dest, string image, string duration) 
+        public RecipeStepViewModel(string stepNum, string dest, string image, string duration) 
         {
             this._stepNum = stepNum;
             this._description = dest;
-            this._image = image;
+            this._image = new Uri(image, UriKind.RelativeOrAbsolute);
             this._duration = duration;
         }
 
@@ -59,8 +67,8 @@ namespace RecipeRecorder.ViewModel.BasicModel
             }
         }
 
-        private string _image;
-        public string Image
+        private Uri _image;
+        public Uri Image
         {
             get
             {

@@ -51,7 +51,7 @@ namespace RecipeRecorder
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement)sender;
-            IngredientModel obj = element.DataContext as IngredientModel;
+            IngredientViewModel obj = element.DataContext as IngredientViewModel;
             App.IngredientViewModel.DeleteIngredientItem(obj);
             this.Focus();
         }
@@ -59,7 +59,7 @@ namespace RecipeRecorder
         private void ConfirmIcon_Click(object sender, EventArgs e)
         {
             string ingredients = App.IngredientViewModel.GetJsonContent();
-            NavigationService.Navigate(new Uri("/CreateStepPage.xaml?Rname=" + this.RecipeName + "&Ingredients=" + ingredients, UriKind.Relative));
+            NavigationService.Navigate(new Uri("/CreateStepsPage.xaml?Rname=" + this.RecipeName + "&Ingredients=" + ingredients, UriKind.Relative));
         }
 
         private void ExitIcon_Click(object sender, EventArgs e)

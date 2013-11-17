@@ -6,11 +6,11 @@ using RecipeRecorder.ViewModel.BasicModel;
 
 namespace RecipeRecorder.ViewModel
 {
-    public class RecipeStepsModel : INotifyPropertyChanged
+    public class RecipeStepsViewModel : INotifyPropertyChanged
     {
-        public RecipeStepsModel()
+        public RecipeStepsViewModel()
         {
-            this._recipeStepItems = new ObservableCollection<RecipeStepModel>();
+            this._recipeStepItems = new ObservableCollection<RecipeStepViewModel>();
         }
         
         private string _ingredients = "";
@@ -47,8 +47,8 @@ namespace RecipeRecorder.ViewModel
             }
         }
 
-        private ObservableCollection<RecipeStepModel> _recipeStepItems;
-        public ObservableCollection<RecipeStepModel> RecipeStepItems
+        private ObservableCollection<RecipeStepViewModel> _recipeStepItems;
+        public ObservableCollection<RecipeStepViewModel> RecipeStepItems
         {
             get { return _recipeStepItems; }
             set
@@ -59,10 +59,15 @@ namespace RecipeRecorder.ViewModel
         }
         public void AddStepItem(string step, string dest, string image, string duration)
         {
-            this._recipeStepItems.Add(new RecipeStepModel(step, dest, image, duration));
+            this._recipeStepItems.Add(new RecipeStepViewModel(step, dest, image, duration));
         }
 
-        public void DeleteStepItem(RecipeStepModel obj)
+        public void AddStepItem(RecipeStepViewModel obj)
+        {
+            this._recipeStepItems.Add(obj);
+        }
+        
+        public void DeleteStepItem(RecipeStepViewModel obj)
         {
             this._recipeStepItems.Remove(obj);
         }

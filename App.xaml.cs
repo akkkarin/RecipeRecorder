@@ -11,42 +11,60 @@ using Microsoft.Phone.Shell;
 using RecipeRecorder.Resources;
 using RecipeRecorder.ViewModel;
 using BugSense;
+using RecipeRecorder.ViewModel.BasicModel;
 
 namespace RecipeRecorder
 {
     public partial class App : Application
     {
-        private static IngredientsModel ingredientViewModel = null;
+        private static RecipeStepViewModel stepViewModel = null;
         /// <summary>
         /// A static ViewModel used by the views to bind against.
         /// </summary>
         /// <returns>The MainViewModel object.</returns>
-        public static IngredientsModel IngredientViewModel
-        {
-            get
-            {
-                // Delay creation of the view model until necessary
-                if (ingredientViewModel == null)
-                    ingredientViewModel = new IngredientsModel();
-
-                return ingredientViewModel;
-            }
-        }
-
-        private static RecipeStepsModel stepViewModel = null;
-        /// <summary>
-        /// A static ViewModel used by the views to bind against.
-        /// </summary>
-        /// <returns>The MainViewModel object.</returns>
-        public static RecipeStepsModel StepViewModel
+        public static RecipeStepViewModel StepViewModel
         {
             get
             {
                 // Delay creation of the view model until necessary
                 if (stepViewModel == null)
-                    stepViewModel = new RecipeStepsModel();
+                    stepViewModel = new RecipeStepViewModel();
 
                 return stepViewModel;
+            }
+        }
+
+        private static IngredientsViewModel ingredientViewModel = null;
+        /// <summary>
+        /// A static ViewModel used by the views to bind against.
+        /// </summary>
+        /// <returns>The MainViewModel object.</returns>
+        public static IngredientsViewModel IngredientViewModel
+        {
+            get
+            {
+                // Delay creation of the view model until necessary
+                if (ingredientViewModel == null)
+                    ingredientViewModel = new IngredientsViewModel();
+
+                return ingredientViewModel;
+            }
+        }
+
+        private static RecipeStepsViewModel stepsViewModel = null;
+        /// <summary>
+        /// A static ViewModel used by the views to bind against.
+        /// </summary>
+        /// <returns>The MainViewModel object.</returns>
+        public static RecipeStepsViewModel StepsViewModel
+        {
+            get
+            {
+                // Delay creation of the view model until necessary
+                if (stepsViewModel == null)
+                    stepsViewModel = new RecipeStepsViewModel();
+
+                return stepsViewModel;
             }
         }
 

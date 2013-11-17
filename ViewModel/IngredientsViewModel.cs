@@ -7,11 +7,11 @@ using Newtonsoft.Json;
 
 namespace RecipeRecorder.ViewModel
 {
-    public class IngredientsModel : INotifyPropertyChanged
+    public class IngredientsViewModel : INotifyPropertyChanged
     {
-        public IngredientsModel()
+        public IngredientsViewModel()
         {
-            this._ingredientItems = new ObservableCollection<IngredientModel>();
+            this._ingredientItems = new ObservableCollection<IngredientViewModel>();
         }
 
         private string _recipeName = "";
@@ -31,8 +31,8 @@ namespace RecipeRecorder.ViewModel
             }
         }
 
-        private ObservableCollection<IngredientModel> _ingredientItems;
-        public ObservableCollection<IngredientModel> IngredientItems
+        private ObservableCollection<IngredientViewModel> _ingredientItems;
+        public ObservableCollection<IngredientViewModel> IngredientItems
         {
             get { return _ingredientItems; }
             set
@@ -44,10 +44,10 @@ namespace RecipeRecorder.ViewModel
 
         public void AddIngredientItem(string amount, string name)
         {
-            this._ingredientItems.Add(new IngredientModel(amount, name));
+            this._ingredientItems.Add(new IngredientViewModel(amount, name));
         }
 
-        public void DeleteIngredientItem(IngredientModel obj)
+        public void DeleteIngredientItem(IngredientViewModel obj)
         {
             this._ingredientItems.Remove(obj);
         }

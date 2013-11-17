@@ -103,6 +103,9 @@
     <Compile Include="CreateStepPage.xaml.cs">
       <DependentUpon>CreateStepPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateStepsPage.xaml.cs">
+      <DependentUpon>CreateStepsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -119,12 +122,12 @@
     <Compile Include="StartCreatingPage.xaml.cs">
       <DependentUpon>StartCreatingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\BasicModel\IngredientModel.cs" />
+    <Compile Include="ViewModel\BasicModel\IngredientViewModel.cs" />
     <Compile Include="ViewModel\BasicModel\ItemViewModel.cs" />
-    <Compile Include="ViewModel\BasicModel\RecipeStepModel.cs" />
-    <Compile Include="ViewModel\IngredientsModel.cs" />
+    <Compile Include="ViewModel\BasicModel\RecipeStepViewModel.cs" />
+    <Compile Include="ViewModel\IngredientsViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\RecipeStepsModel.cs" />
+    <Compile Include="ViewModel\RecipeStepsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -136,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateStepPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateStepsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

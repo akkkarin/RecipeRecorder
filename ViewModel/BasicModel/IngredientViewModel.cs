@@ -10,10 +10,10 @@ using System.Windows.Media.Animation;
 
 namespace RecipeRecorder.ViewModel.BasicModel
 {
-    public class IngredientModel : INotifyPropertyChanged
+    public class IngredientViewModel : INotifyPropertyChanged
     {
 
-        public IngredientModel(string amount, string name)
+        public IngredientViewModel(string amount, string name)
         {
             this._amount = amount;
             this._ingredientName = name;
