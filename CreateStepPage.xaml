@@ -24,7 +24,7 @@
             <Button Name="StepImage" Click="StepImage_Click">
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Source="C:/Data/Users/Public/Pictures/Camera Roll/WP_20131115_006.jpg" x:Name="StepImage" HorizontalAlignment="Left" Height="346" Margin="22,84,0,0" VerticalAlignment="Top" Width="325"/>
+                        <Image Source="{Binding Image}" x:Name="StepImage" HorizontalAlignment="Left" Height="346" Margin="22,84,0,0" VerticalAlignment="Top" Width="325"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>

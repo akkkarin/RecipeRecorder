@@ -11,21 +11,22 @@ using RecipeRecorder.ViewModel;
 using RecipeRecorder.ViewModel.BasicModel;
 using System.Windows.Media;
 using RecipeRecorder.Resources;
-using Microsoft.Phone.Tasks;
-
+using Microsoft.Phone.Tasks; 
 
 namespace RecipeRecorder
 {
     public partial class CreateStepPage : PhoneApplicationPage
     {
         private PhotoChooserTask photoChooserTask;
-
+        private CameraCaptureTask cameraCaptureTask;
         public CreateStepPage()
         {
             InitializeComponent();
             DataContext = App.StepViewModel;
             photoChooserTask = new PhotoChooserTask();
             photoChooserTask.Completed += new EventHandler<PhotoResult>(photoChooserTask_Completed);
+            cameraCaptureTask = new CameraCaptureTask();
+            cameraCaptureTask.Completed += new EventHandler<PhotoResult>(cameraCaptureTask_Completed);
         }
 
         private void photoChooserTask_Completed(object sender, PhotoResult e)
@@ -40,6 +41,19 @@ namespace RecipeRecorder
                 MessageBox.Show(uri,
                 "MessageBox Example", MessageBoxButton.OK);
                 App.StepViewModel.Image = new Uri(uri, UriKind.RelativeOrAbsolute);
+            }
+        }
+
+        private void cameraCaptureTask_Completed(object sender, PhotoResult e)
+        {
+            if (e.TaskResult == TaskResult.OK)
+            {
+                MessageBox.Show(e.ChosenPhoto.Length.ToString());
+
+                //Code to display the photo on the page in an image control named myImage.
+                //System.Windows.Media.Imaging.BitmapImage bmp = new System.Windows.Media.Imaging.BitmapImage();
+                //bmp.SetSource(e.ChosenPhoto);
+                //myImage.Source = bmp;
             }
         }
 
@@ -130,7 +144,7 @@ namespace RecipeRecorder
             else {
                 MessageBoxResult result =
                 MessageBox.Show("Please finish this step",
-                "MessageBox Example", MessageBoxButton.OK);
+                "Warning", MessageBoxButton.OK);
             }
         }
 
@@ -145,11 +159,32 @@ namespace RecipeRecorder
             App.StepViewModel.Duration = AppResources.DurationHandsup;
             App.StepViewModel.StepNum = "";
             App.StepViewModel.Image = new Uri("/Images/edit.png", UriKind.RelativeOrAbsolute);
-        }
-
+        } 
+        
         private void StepImage_Click(object sender, RoutedEventArgs e)
         {
-            this.photoChooserTask.Show();
+            IAsyncResult result = Microsoft.Xna.Framework.GamerServices.Guide.BeginShowMessageBox(
+             "Image source",
+             "Where do you want to get your image?",
+             new string[] { "Camera", "Albums" },
+             0,
+             Microsoft.Xna.Framework.GamerServices.MessageBoxIcon.Alert,
+             null,
+             null);
+            result.AsyncWaitHandle.WaitOne();
+
+            int? choice = Microsoft.Xna.Framework.GamerServices.Guide.EndShowMessageBox(result);
+            if (choice.HasValue)
+            {
+                if (choice.Value == 0)
+                {
+                    this.cameraCaptureTask.Show();
+                }
+                else 
+                {
+                    this.photoChooserTask.Show();
+                }
+            }
         }
     }
 }
