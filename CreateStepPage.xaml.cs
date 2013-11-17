@@ -19,6 +19,7 @@ namespace RecipeRecorder
     {
         private PhotoChooserTask photoChooserTask;
         private CameraCaptureTask cameraCaptureTask;
+        bool isEdit;
         public CreateStepPage()
         {
             InitializeComponent();
@@ -61,10 +62,18 @@ namespace RecipeRecorder
         {
             base.OnNavigatedTo(e);
             string msg = "";
+
+            if (NavigationContext.QueryString.TryGetValue("Edit", out msg) && msg.Equals("1"))
+            {
+                this.isEdit = true;
+                return;
+            }
+            
             if (NavigationContext.QueryString.TryGetValue("SNum", out msg))
             { 
                 App.StepViewModel.StepNum = msg;
             }
+
             this.Empty_Step(); 
         }
 
@@ -135,9 +144,15 @@ namespace RecipeRecorder
             this.Focus();
             if (!this.Is_Null())
             {
-                RecipeStepViewModel temp = this.Clone(); 
-
-                App.StepsViewModel.AddStepItem(temp);
+                RecipeStepViewModel temp = this.Clone();
+                if (this.isEdit) 
+                {
+                    App.StepsViewModel.EditStepItem(temp);
+                }
+                else
+                {
+                    App.StepsViewModel.AddStepItem(temp);
+                }
                 this.Empty_Step();
                 NavigationService.GoBack();
             }

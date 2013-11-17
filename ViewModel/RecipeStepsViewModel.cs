@@ -66,7 +66,15 @@ namespace RecipeRecorder.ViewModel
         {
             this._recipeStepItems.Add(obj);
         }
-        
+
+        public void EditStepItem(RecipeStepViewModel obj) 
+        {
+            string[] tmp = obj.StepNum.Split(' ');
+            int index = Convert.ToInt32(tmp[1]) - 1;
+            this._recipeStepItems.RemoveAt(index);
+            this._recipeStepItems.Insert(index, obj);
+        }
+
         public void DeleteStepItem(RecipeStepViewModel obj)
         {
             this._recipeStepItems.Remove(obj);

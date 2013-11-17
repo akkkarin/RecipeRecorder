@@ -54,7 +54,8 @@
                             </StackPanel>
                             <toolkit:ContextMenuService.ContextMenu>
                                 <toolkit:ContextMenu IsZoomEnabled="True" x:Name="ContextMenu" >
-                                    <toolkit:MenuItem x:Name="Delete" Header="Delete Ingredient" Click="DeleteStep_Click"/>
+                                    <toolkit:MenuItem x:Name="Edit" Header="Edit this step" Click="Edit_Click"/>
+                                    <toolkit:MenuItem x:Name="Delete" Header="Delete this step" Click="DeleteStep_Click"/>
                                 </toolkit:ContextMenu>
                             </toolkit:ContextMenuService.ContextMenu>
                         </StackPanel>

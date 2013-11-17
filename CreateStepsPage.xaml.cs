@@ -69,5 +69,16 @@ namespace RecipeRecorder
         private void ExitIcon_Click(object sender, EventArgs e)
         { }
 
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            var element = (FrameworkElement)sender;
+            RecipeStepViewModel obj = element.DataContext as RecipeStepViewModel;
+            App.StepViewModel.Description=obj.Description;
+            App.StepViewModel.Duration=obj.Duration;
+            App.StepViewModel.Image=obj.Image;
+            App.StepViewModel.StepNum=obj.StepNum;
+            NavigationService.Navigate(new Uri("/CreateStepPage.xaml?Edit=1", UriKind.Relative));
+        }
+
     }
 }
