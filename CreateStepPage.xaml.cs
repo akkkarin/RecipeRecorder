@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using RecipeRecorder.ViewModel;
 using RecipeRecorder.ViewModel.BasicModel;
 using System.Windows.Media;
 using RecipeRecorder.Resources;
 using Microsoft.Phone.Tasks;
-using System.Windows.Input; 
+using System.Windows.Input;
+using System.Windows.Media.Imaging; 
 
 namespace RecipeRecorder
 {
@@ -37,12 +33,7 @@ namespace RecipeRecorder
             {
                 System.Windows.Media.Imaging.BitmapImage bmp = new System.Windows.Media.Imaging.BitmapImage();
                 bmp.SetSource(e.ChosenPhoto);
-                
-                string uri = e.OriginalFileName;
-                MessageBoxResult result =
-                MessageBox.Show(uri,
-                "MessageBox Example", MessageBoxButton.OK);
-                App.StepViewModel.Image = new Uri(uri, UriKind.RelativeOrAbsolute);
+                App.StepViewModel.Image = bmp;  
             }
         }
 
@@ -50,12 +41,10 @@ namespace RecipeRecorder
         {
             if (e.TaskResult == TaskResult.OK)
             {
-                MessageBox.Show(e.ChosenPhoto.Length.ToString());
-
-                //Code to display the photo on the page in an image control named myImage.
-                //System.Windows.Media.Imaging.BitmapImage bmp = new System.Windows.Media.Imaging.BitmapImage();
-                //bmp.SetSource(e.ChosenPhoto);
-                //myImage.Source = bmp;
+                MessageBox.Show(e.ChosenPhoto.Length.ToString()); 
+                System.Windows.Media.Imaging.BitmapImage bmp = new System.Windows.Media.Imaging.BitmapImage();
+                bmp.SetSource(e.ChosenPhoto);
+                App.StepViewModel.Image = bmp;  
             }
         }
 
@@ -67,7 +56,6 @@ namespace RecipeRecorder
             if (NavigationContext.QueryString.TryGetValue("Edit", out msg) && msg.Equals("1"))
             {
                 this.isEdit = true;
-                return;
             }
             else 
             {
@@ -145,6 +133,12 @@ namespace RecipeRecorder
                 binding.UpdateSource();
             }
         }
+        private void debugger(string message)
+        {
+            MessageBoxResult result =
+                    MessageBox.Show(message,
+                    "Warning", MessageBoxButton.OK);
+        }
 
         private void FinishIcon_Click(object sender, EventArgs e)
         {
@@ -182,7 +176,7 @@ namespace RecipeRecorder
             App.StepViewModel.Description = AppResources.DescriptionHandsup;
             App.StepViewModel.Duration = AppResources.DurationHandsup;
             App.StepViewModel.StepNum = "";
-            App.StepViewModel.Image = new Uri("/Images/edit.png", UriKind.RelativeOrAbsolute);
+            App.StepViewModel.Image = new BitmapImage(new Uri("/Images/edit.png", UriKind.RelativeOrAbsolute));
         } 
         
         private void StepImage_Click(object sender, RoutedEventArgs e)

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using RecipeRecorder.Resources;
 using RecipeRecorder.ViewModel.BasicModel;
 
 namespace RecipeRecorder.ViewModel
@@ -66,20 +65,43 @@ namespace RecipeRecorder.ViewModel
         {
             this._recipeStepItems.Add(obj);
         }
+         
 
         public void EditStepItem(RecipeStepViewModel obj) 
         {
-            string[] tmp = obj.StepNum.Split(' ');
-            int index = Convert.ToInt32(tmp[1]) - 1;
-            this._recipeStepItems.RemoveAt(index);
-            this._recipeStepItems.Insert(index, obj);
+            foreach (RecipeStepViewModel item in this._recipeStepItems)
+            {
+                if (item.StepNum == obj.StepNum) {
+                    item.Description = obj.Description;
+                    item.Duration = obj.Duration;
+                    item.Image = obj.Image;
+                    break;
+                }
+            }
         }
 
         public void DeleteStepItem(RecipeStepViewModel obj)
         {
-            this._recipeStepItems.Remove(obj);
+            foreach (RecipeStepViewModel item in this._recipeStepItems)
+            {
+                if (item.StepNum == obj.StepNum)
+                {
+                    this._recipeStepItems.Remove(item);
+                    break;
+                }
+            }
+            this.Sort_Step();
         }
 
+        private void Sort_Step() 
+        {
+            int i = 1;
+            foreach (RecipeStepViewModel item in this._recipeStepItems)
+            {
+                item.StepNum = "Step " + i;
+                i++;
+            }
+        }
         #region PropertyChangedEventHandler
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

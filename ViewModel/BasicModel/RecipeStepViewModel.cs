@@ -14,14 +14,14 @@ namespace RecipeRecorder.ViewModel.BasicModel
         public RecipeStepViewModel() {
             this._stepNum = "";
             this._description = AppResources.DescriptionHandsup;
-            this.Image = new Uri("/Images/edit.png", UriKind.RelativeOrAbsolute);
+            this.Image = new BitmapImage(new Uri("/Images/edit.png", UriKind.RelativeOrAbsolute));
             this._duration = AppResources.DurationHandsup;
         }
 
         public RecipeStepViewModel(string dest, string image, string duration)
         {
             this._description = dest;
-            this._image = new Uri(image, UriKind.RelativeOrAbsolute);
+            this._image = new BitmapImage(new Uri(image, UriKind.RelativeOrAbsolute));
             this._duration = duration;
         }
 
@@ -29,8 +29,25 @@ namespace RecipeRecorder.ViewModel.BasicModel
         {
             this._stepNum = stepNum;
             this._description = dest;
-            this._image = new Uri(image, UriKind.RelativeOrAbsolute);
+            this._image = new BitmapImage(new Uri(image, UriKind.RelativeOrAbsolute));
             this._duration = duration;
+        }
+
+        private bool _isCover;
+        public bool IsCover
+        {
+            get
+            {
+                return _isCover;
+            }
+            set
+            {
+                if (value != _isCover)
+                {
+                    _isCover = value;
+                    NotifyPropertyChanged("IsCover");
+                }
+            }
         }
 
         private string _stepNum;
@@ -67,8 +84,8 @@ namespace RecipeRecorder.ViewModel.BasicModel
             }
         }
 
-        private Uri _image;
-        public Uri Image
+        private BitmapImage _image;
+        public BitmapImage Image
         {
             get
             {

@@ -17,6 +17,27 @@ namespace RecipeRecorder
 {
     public partial class App : Application
     {
+        private static RecipeViewModel recipeViewModel = null;
+        /// <summary>
+        /// A static ViewModel used by the views to bind against.
+        /// </summary>
+        /// <returns>The MainViewModel object.</returns>
+        public static RecipeViewModel RecipeViewModel
+        {
+            get
+            {
+                // Delay creation of the view model until necessary
+                if (recipeViewModel == null)
+                    recipeViewModel = new RecipeViewModel();
+
+                RecipeStepsViewModel tempr = stepsViewModel;
+                IngredientsViewModel tempi = ingredientViewModel;
+                recipeViewModel.Steps = tempr;
+                recipeViewModel.Ingredients = tempi;
+                return recipeViewModel;
+            }
+        }
+
         private static RecipeStepViewModel stepViewModel = null;
         /// <summary>
         /// A static ViewModel used by the views to bind against.
