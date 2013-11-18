@@ -52,7 +52,7 @@ namespace RecipeRecorder
             App.StepViewModel.Description = AppResources.DescriptionHandsup;
             App.StepViewModel.Duration = AppResources.DurationHandsup;
             App.StepViewModel.StepNum = "";
-            App.StepViewModel.Image = new Uri("\\Images\\edit.png");
+            App.StepViewModel.Image = new Uri("/Images/edit.png", UriKind.RelativeOrAbsolute);
         }
 
         private void FinishIcon_Click(object sender, EventArgs e)
@@ -62,8 +62,9 @@ namespace RecipeRecorder
 
         private void AddIcon_Click(object sender, EventArgs e)
         {
-            string snum = "Step " + (App.StepsViewModel.RecipeStepItems.Count + 1);
-            NavigationService.Navigate(new Uri("/CreateStepPage.xaml?Rname=" + this.RecipeName + "&SNum=" + snum, UriKind.Relative));
+            this.Empty_Step(); 
+            App.StepViewModel.StepNum = "Step " + (App.StepsViewModel.RecipeStepItems.Count + 1); 
+            NavigationService.Navigate(new Uri("/CreateStepPage.xaml?Rname=" + this.RecipeName, UriKind.Relative));
         }
 
         private void ExitIcon_Click(object sender, EventArgs e)

@@ -11,7 +11,8 @@ using RecipeRecorder.ViewModel;
 using RecipeRecorder.ViewModel.BasicModel;
 using System.Windows.Media;
 using RecipeRecorder.Resources;
-using Microsoft.Phone.Tasks; 
+using Microsoft.Phone.Tasks;
+using System.Windows.Input; 
 
 namespace RecipeRecorder
 {
@@ -68,13 +69,10 @@ namespace RecipeRecorder
                 this.isEdit = true;
                 return;
             }
-            
-            if (NavigationContext.QueryString.TryGetValue("SNum", out msg))
-            { 
-                App.StepViewModel.StepNum = msg;
+            else 
+            {
+                this.isEdit = false;
             }
-
-            this.Empty_Step(); 
         }
 
         private void Text_GotFocus(object sender, RoutedEventArgs e)
@@ -138,13 +136,24 @@ namespace RecipeRecorder
 
             return temp;
         }
+        
+        private void Update_Focus(){
+            object focusObj = FocusManager.GetFocusedElement();
+            if (focusObj != null && focusObj is TextBox)
+            {
+                var binding = (focusObj as TextBox).GetBindingExpression(TextBox.TextProperty);
+                binding.UpdateSource();
+            }
+        }
 
         private void FinishIcon_Click(object sender, EventArgs e)
         {
-            this.Focus();
+            
             if (!this.Is_Null())
             {
+                this.Update_Focus();
                 RecipeStepViewModel temp = this.Clone();
+      
                 if (this.isEdit) 
                 {
                     App.StepsViewModel.EditStepItem(temp);
