@@ -22,7 +22,7 @@ namespace RecipeRecorder
         {
             MessageBoxResult result =
                     MessageBox.Show(message,
-                    "Warning", MessageBoxButton.OK);
+                    "Success!", MessageBoxButton.OK);
         }
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
@@ -32,7 +32,7 @@ namespace RecipeRecorder
         private void FinishIcon_Click(object sender, EventArgs e)
         {
             App.RecipeViewModel.SaveRecipe();
-
+            this.debugger(App.RecipeViewModel.TestDB());
         }
 
         private void BackIcon_Click(object sender, EventArgs e)

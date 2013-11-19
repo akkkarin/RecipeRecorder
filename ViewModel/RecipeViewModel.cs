@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Data.Linq;
+using System.Collections.ObjectModel;
 
 namespace RecipeRecorder.ViewModel
 {
@@ -108,12 +109,19 @@ namespace RecipeRecorder.ViewModel
 
                 i++;
             }
-        }
-
+        } 
 
         public string TestDB() 
-        { 
-            
+        {
+            // Specify the query for all to-do items in the database.
+            var toDoItemsInDB = from RecipeRecorder.Model.LocalRecipeModel.LocalRecipe rsp in this._localDB.RecipeTable
+                                select rsp.RecipeName;
+            string r = "";
+            foreach (string name in toDoItemsInDB)
+            {
+                r = r + name;
+            }
+            return r;
         }
 
         private Binary BufferFromImage(BitmapImage imageSource)
