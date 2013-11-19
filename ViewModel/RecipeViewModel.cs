@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RecipeRecorder.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace RecipeRecorder.ViewModel
     {
         private RecipeStepsViewModel _steps;
         private IngredientsViewModel _ingredients;
+        private LocalRecipeModel _localDB;
 
         public RecipeViewModel() 
         {

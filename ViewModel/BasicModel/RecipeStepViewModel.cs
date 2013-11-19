@@ -15,7 +15,7 @@ namespace RecipeRecorder.ViewModel.BasicModel
             this._stepNum = "";
             this._description = AppResources.DescriptionHandsup;
             this.Image = new BitmapImage(new Uri("/Images/edit.png", UriKind.RelativeOrAbsolute));
-            this._duration = AppResources.DurationHandsup;
+            this._duration = AppResources.DurationHandsup; 
         }
 
         public RecipeStepViewModel(string dest, string image, string duration)
