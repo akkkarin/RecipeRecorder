@@ -18,19 +18,21 @@ namespace RecipeRecorder
             DataContext = App.RecipeViewModel;
             debugger(App.RecipeViewModel.Ingredients.RecipeName);
         }
+
         private void debugger(string message)
         {
             MessageBoxResult result =
                     MessageBox.Show(message,
                     "Success!", MessageBoxButton.OK);
         }
+
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e); 
         }
 
-        private void FinishIcon_Click(object sender, EventArgs e)
-        {
+        private void SubmitIcon_Click(object sender, EventArgs e)
+        { 
             App.RecipeViewModel.SaveRecipe();
             this.debugger(App.RecipeViewModel.TestDB());
         }

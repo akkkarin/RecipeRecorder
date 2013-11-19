@@ -31,7 +31,7 @@ namespace RecipeRecorder
         {
             if (e.TaskResult == TaskResult.OK)
             {
-                System.Windows.Media.Imaging.BitmapImage bmp = new System.Windows.Media.Imaging.BitmapImage();
+                BitmapImage bmp = new  BitmapImage();
                 bmp.SetSource(e.ChosenPhoto);
                 App.StepViewModel.Image = bmp;  
             }
@@ -42,7 +42,7 @@ namespace RecipeRecorder
             if (e.TaskResult == TaskResult.OK)
             {
                 MessageBox.Show(e.ChosenPhoto.Length.ToString()); 
-                System.Windows.Media.Imaging.BitmapImage bmp = new System.Windows.Media.Imaging.BitmapImage();
+                BitmapImage bmp = new BitmapImage();
                 bmp.SetSource(e.ChosenPhoto);
                 App.StepViewModel.Image = bmp;  
             }

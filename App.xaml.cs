@@ -153,17 +153,15 @@ namespace RecipeRecorder
             // Create the database if it does not exist.
             using (LocalRecipeModel db = new LocalRecipeModel(DBConnectionString))
             {
-                if (db.DatabaseExists() == false)
-                {
                     // Create the local database.
                     db.CreateDatabase();
 
                     //default user
-                    db.UserTable.InsertOnSubmit(new RecipeRecorder.Model.LocalRecipeModel.User { UId = 1 }); 
+                    db.User.InsertOnSubmit(new UserItem { UserName="sa"  }); 
 
                     // Save categories to the database.
                     db.SubmitChanges();
-                }
+             
             }
 
             // Create the ViewModel object.

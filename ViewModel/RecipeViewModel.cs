@@ -1,16 +1,12 @@
 ﻿using RecipeRecorder.Model;
 using RecipeRecorder.ViewModel.BasicModel;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Data.Linq;
-using System.Collections.ObjectModel;
 
 namespace RecipeRecorder.ViewModel
 {
@@ -19,7 +15,7 @@ namespace RecipeRecorder.ViewModel
         private RecipeStepsViewModel _steps;
         private IngredientsViewModel _ingredients;
         private LocalRecipeModel _localDB;
-        private RecipeRecorder.Model.LocalRecipeModel.User _testUser;
+        private UserItem _testUser;
 
         public RecipeViewModel() 
         {
@@ -31,7 +27,7 @@ namespace RecipeRecorder.ViewModel
             this._ingredients = new IngredientsViewModel();
             this._steps = new RecipeStepsViewModel();
             this._localDB = new LocalRecipeModel(db);
-            this._testUser = new LocalRecipeModel.User { UId = 1 };
+            this._testUser = new UserItem { UId = 1 };
         }
         
         public void SaveChangesToDB()
@@ -41,38 +37,36 @@ namespace RecipeRecorder.ViewModel
 
         public void SaveRecipe() 
         {
-            RecipeRecorder.Model.LocalRecipeModel.LocalRecipe newRecipe =
-            new RecipeRecorder.Model.LocalRecipeModel.LocalRecipe
-                {
+            LocalRecipeItem newRecipe =new LocalRecipeItem
+            {
                     RecipeName = this._ingredients.RecipeName,
                     InsertDate = DateTime.Now,
                     ModifyDate = DateTime.Now,
                     Category = this._ingredients.Category,
                     User = this._testUser
-                };
-
-            this._localDB.RecipeTable.InsertOnSubmit(newRecipe);
+            };
+            this._localDB.Recipe.InsertOnSubmit(newRecipe);
             this._localDB.SubmitChanges();
             this.SaveIngredients(newRecipe);
             this.SaveSteps(newRecipe);
         }
 
-        private void SaveIngredients(RecipeRecorder.Model.LocalRecipeModel.LocalRecipe newRecipe)
+        private void SaveIngredients(LocalRecipeItem newRecipe)
         {
-            RecipeRecorder.Model.LocalRecipeModel.Ingredient newIn;
+            IngredientItem newIn;
             foreach(IngredientViewModel ivm in this._ingredients.IngredientItems)
             {
-                newIn = new LocalRecipeModel.Ingredient
+                newIn = new IngredientItem
                 {
                     IngredientName = ivm.IngredientName,
                     Category = "Default"
                 };
 
-                this._localDB.IngredientTable.InsertOnSubmit(newIn);
+                this._localDB.Ingredient.InsertOnSubmit(newIn);
                 this._localDB.SubmitChanges();
 
-                this._localDB.MatchRITable.InsertOnSubmit(
-                    new RecipeRecorder.Model.LocalRecipeModel.MatchRecipeIngredient 
+                this._localDB.MatchRecipeIngredient.InsertOnSubmit(
+                    new MatchRecipeIngredientItem 
                     { 
                         Amount = ivm.Amount,
                         Ingrediant = newIn,
@@ -83,26 +77,27 @@ namespace RecipeRecorder.ViewModel
             }
         }
 
-        private void SaveSteps(RecipeRecorder.Model.LocalRecipeModel.LocalRecipe newRecipe) 
+        private void SaveSteps(LocalRecipeItem newRecipe) 
         {
-            RecipeRecorder.Model.LocalRecipeModel.Step newSt;
+            StepItem newSt;
             int i = 1;
             foreach(RecipeStepViewModel rsv in this._steps.RecipeStepItems)
             { 
-                newSt = new LocalRecipeModel.Step 
+                newSt = new StepItem 
                 { 
                     Description=rsv.Description,
                     Duration=rsv.Duration,
-                    Image = this.BufferFromImage(rsv.Image)
+                    Image = rsv.Image.UriSource.OriginalString
                 };
-                this._localDB.StepTable.InsertOnSubmit(newSt);
+                this._localDB.Step.InsertOnSubmit(newSt);
                 this._localDB.SubmitChanges();
 
-                this._localDB.MatchRSTable.InsertOnSubmit(
-                    new RecipeRecorder.Model.LocalRecipeModel.MatchRecipeStep 
+                this._localDB.MatchRecipeStep.InsertOnSubmit(
+                    new MatchRecipeStepItem 
                     {
                         Step = newSt,
-                        Order = i
+                        Order = i,
+                        Recipe = newRecipe
                     }
                 );
                 this._localDB.SubmitChanges();
@@ -114,7 +109,7 @@ namespace RecipeRecorder.ViewModel
         public string TestDB() 
         {
             // Specify the query for all to-do items in the database.
-            var toDoItemsInDB = from RecipeRecorder.Model.LocalRecipeModel.LocalRecipe rsp in this._localDB.RecipeTable
+            var toDoItemsInDB = from LocalRecipeItem rsp in this._localDB.Recipe
                                 select rsp.RecipeName;
             string r = "";
             foreach (string name in toDoItemsInDB)
@@ -122,22 +117,7 @@ namespace RecipeRecorder.ViewModel
                 r = r + name;
             }
             return r;
-        }
-
-        private Binary BufferFromImage(BitmapImage imageSource)
-        {
-            byte[] data = null;
-            using (MemoryStream stream = new MemoryStream())
-            {
-                Image image = new Image();
-                image.Source = imageSource; 
-                WriteableBitmap wBitmap = new WriteableBitmap(image, null); 
-                wBitmap.SaveJpeg(stream, wBitmap.PixelWidth, wBitmap.PixelHeight, 0, 100);
-                stream.Seek(0, SeekOrigin.Begin);
-                data = stream.GetBuffer();
-            } 
-            return new Binary(data);
-        }
+        } 
 
         public RecipeStepsViewModel Steps
         {

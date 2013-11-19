@@ -63,7 +63,7 @@
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar Mode="Default" Opacity="1.0" IsMenuEnabled="False" IsVisible="True">
-            <shell:ApplicationBarIconButton x:Name="FinishIcon" IconUri="/Images/check.png" Text="Finish" Click="FinishIcon_Click" />
+            <shell:ApplicationBarIconButton x:Name="SubmitIcon" IconUri="/Images/check.png" Text="Finish" Click="SubmitIcon_Click" />
             <shell:ApplicationBarIconButton x:Name="BackIcon" IconUri="/Images/back.png" Text="Finish" Click="BackIcon_Click" />
             <shell:ApplicationBarIconButton x:Name="ExitIcon" IconUri="/Images/cancel.png" Text="Exit" Click="ExitIcon_Click"/>
         </shell:ApplicationBar>

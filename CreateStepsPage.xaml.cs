@@ -34,13 +34,7 @@ namespace RecipeRecorder
             RecipeStepViewModel obj = element.DataContext as RecipeStepViewModel; 
             App.StepsViewModel.DeleteStepItem(obj);
             this.Focus();
-        }
-
-        private void debugger(string message) {
-                MessageBoxResult result =
-                        MessageBox.Show(message,
-                        "Warning", MessageBoxButton.OK);
-        }
+        } 
 
         private void Empty_Step()
         {
