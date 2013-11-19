@@ -31,6 +31,23 @@ namespace RecipeRecorder.ViewModel
             }
         }
 
+        private string _category = "";
+        public string Category
+        {
+            get
+            {
+                return _category;
+            }
+            set
+            {
+                if (value != _category)
+                {
+                    _category = value;
+                    NotifyPropertyChanged("Category");
+                }
+            }
+        }
+
         private ObservableCollection<IngredientViewModel> _ingredientItems;
         public ObservableCollection<IngredientViewModel> IngredientItems
         {

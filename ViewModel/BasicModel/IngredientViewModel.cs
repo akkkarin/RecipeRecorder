@@ -61,6 +61,29 @@ namespace RecipeRecorder.ViewModel.BasicModel
             }
         }
 
+
+
+        private string _category;
+        /// <summary>
+        /// Sample ViewModel property; this property is used in the view to display its value using a Binding.
+        /// </summary>
+        /// <returns></returns>
+        public string Category
+        {
+            get
+            {
+                return _category;
+            }
+            set
+            {
+                if (value != _category)
+                {
+                    _category = value;
+                    NotifyPropertyChanged("Category");
+                }
+            }
+        }
+
         #region PropertyChangedEventHandler
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

@@ -33,6 +33,8 @@
             <Button Content="Confirm" HorizontalAlignment="Left" Margin="10,436,0,0" VerticalAlignment="Top" Height="94" Width="436" Click="Button_Click">
 
             </Button>
+            <TextBox x:Name="CategoryText" HorizontalAlignment="Left" Height="72" Margin="112,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="344"/>
+            <TextBlock x:Name="TagCategory" HorizontalAlignment="Left" Margin="10,127,0,0" TextWrapping="Wrap" Text="Category:" VerticalAlignment="Top" Height="37" Width="102" FontSize="24"/>
 
         </Grid>
     </Grid>

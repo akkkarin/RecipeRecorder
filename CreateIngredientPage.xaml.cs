@@ -30,6 +30,10 @@ namespace RecipeRecorder
                 this.RecipeName = msg;
                 App.IngredientViewModel.RecipeName = msg;
             }
+            if (NavigationContext.QueryString.TryGetValue("Category", out msg))
+            { 
+                App.IngredientViewModel.Category = msg;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -12,12 +12,13 @@ using RecipeRecorder.Resources;
 using RecipeRecorder.ViewModel;
 using BugSense;
 using RecipeRecorder.ViewModel.BasicModel;
+using RecipeRecorder.Model;
 
 namespace RecipeRecorder
 {
     public partial class App : Application
     {
-        private static RecipeViewModel recipeViewModel = null;
+        private static RecipeViewModel recipeViewModel;
         /// <summary>
         /// A static ViewModel used by the views to bind against.
         /// </summary>
@@ -25,11 +26,7 @@ namespace RecipeRecorder
         public static RecipeViewModel RecipeViewModel
         {
             get
-            {
-                // Delay creation of the view model until necessary
-                if (recipeViewModel == null)
-                    recipeViewModel = new RecipeViewModel();
-
+            {  
                 RecipeStepsViewModel tempr = stepsViewModel;
                 IngredientsViewModel tempi = ingredientViewModel;
                 recipeViewModel.Steps = tempr;
@@ -149,6 +146,31 @@ namespace RecipeRecorder
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
+
+            // Specify the local database connection string.
+            string DBConnectionString = "Data Source=isostore:/RecipeLocalDB.sdf";
+
+            // Create the database if it does not exist.
+            using (LocalRecipeModel db = new LocalRecipeModel(DBConnectionString))
+            {
+                if (db.DatabaseExists() == false)
+                {
+                    // Create the local database.
+                    db.CreateDatabase();
+
+                    //default user
+                    db.UserTable.InsertOnSubmit(new RecipeRecorder.Model.LocalRecipeModel.User { UId = 1 }); 
+
+                    // Save categories to the database.
+                    db.SubmitChanges();
+                }
+            }
+
+            // Create the ViewModel object.
+            recipeViewModel = new RecipeViewModel(DBConnectionString);
+
+            // Query the local database and load observable collections.
+            recipeViewModel.LoadCollectionsFromDatabase();
 
         }
 

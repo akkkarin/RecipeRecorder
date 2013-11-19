@@ -22,7 +22,9 @@ namespace RecipeRecorder
             if (RecipiNameText.Text.Length > 0)
             {
                 string Rname = RecipiNameText.Text;
-                NavigationService.Navigate(new Uri("/CreateIngredientPage.xaml?Rname=" + Rname, UriKind.Relative));
+                string Category = CategoryText.Text.Equals("") ? "PrivateKitchen" : CategoryText.Text;
+
+                NavigationService.Navigate(new Uri("/CreateIngredientPage.xaml?Rname=" + Rname + "&Category=" + Category, UriKind.Relative));
             }
         }
 
