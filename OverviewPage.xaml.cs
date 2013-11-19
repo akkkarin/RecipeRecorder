@@ -31,6 +31,7 @@ namespace RecipeRecorder
 
         private void FinishIcon_Click(object sender, EventArgs e)
         {
+            App.RecipeViewModel.SaveRecipe();
 
         }
 

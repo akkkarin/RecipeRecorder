@@ -110,6 +110,12 @@ namespace RecipeRecorder.ViewModel
             }
         }
 
+
+        public string TestDB() 
+        { 
+            
+        }
+
         private Binary BufferFromImage(BitmapImage imageSource)
         {
             byte[] data = null;

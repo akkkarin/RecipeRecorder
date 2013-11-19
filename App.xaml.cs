@@ -170,7 +170,7 @@ namespace RecipeRecorder
             recipeViewModel = new RecipeViewModel(DBConnectionString);
 
             // Query the local database and load observable collections.
-            recipeViewModel.LoadCollectionsFromDatabase();
+            //recipeViewModel.LoadCollectionsFromDatabase();
 
         }
 
