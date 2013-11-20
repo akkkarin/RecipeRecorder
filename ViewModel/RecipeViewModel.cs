@@ -14,6 +14,7 @@ namespace RecipeRecorder.ViewModel
     {
         private RecipeStepsViewModel _steps;
         private IngredientsViewModel _ingredients;
+        private BitmapImage _cover;
         private LocalRecipeModel _localDB;
         private UserItem _testUser;
 
@@ -34,6 +35,20 @@ namespace RecipeRecorder.ViewModel
         public void SaveChangesToDB()
         {
             this._localDB.SubmitChanges();
+        }
+        
+        public void SetSteps(RecipeStepsViewModel s) 
+        {
+            this._steps = s;
+            foreach (RecipeStepViewModel temp in s.RecipeStepItems) 
+            {
+                if (temp.IsCover == true) 
+                { 
+                    this._cover = temp.Image;
+                    return;
+                }
+            }
+            this._cover = new BitmapImage(new Uri("Images/check.png"));
         }
 
         public void SaveRecipe() 

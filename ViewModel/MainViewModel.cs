@@ -19,6 +19,7 @@ namespace RecipeRecorder.ViewModel
             this._myRecipeItems = new ObservableCollection<RecipeViewModel>();
             this._myFavoriteItems = new ObservableCollection<RecipeViewModel>();
             this._localDB = new LocalRecipeModel(Resources.AppResources.DBConnectionString);
+            this.LoadData();
         }
 
         private LocalRecipeModel _localDB;
@@ -41,7 +42,7 @@ namespace RecipeRecorder.ViewModel
                 tr = new RecipeViewModel();
 
                 tr.Ingredients = this.Get_Ingredients(recipe.RecipeId);
-                tr.Steps = this.Get_Steps(recipe.RecipeId);
+                tr.SetSteps(this.Get_Steps(recipe.RecipeId));
 
                 this.MyRecipeItems.Add(tr); 
             }

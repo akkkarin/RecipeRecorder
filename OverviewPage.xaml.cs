@@ -34,6 +34,8 @@ namespace RecipeRecorder
         { 
             App.RecipeViewModel.SaveRecipe();
             this.debugger("You just created a recipe: "+App.RecipeViewModel.TestDB());
+            App.ViewModel.LoadData();
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
 
         private void BackIcon_Click(object sender, EventArgs e)
