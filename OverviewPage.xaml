@@ -25,46 +25,73 @@
             <TextBlock Text="Overview" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="{Binding Steps.RecipeName}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="535" Grid.Row="1" VerticalAlignment="Top" Width="480">
+            <StackPanel Height="175">
+                <phone:LongListSelector Height="175" ItemsSource="{Binding Ingredients.IngredientItems}" Margin="0,5,5,0">
+                    <phone:LongListSelector.ListHeaderTemplate >
+                        <DataTemplate>
+                            <Grid Margin="12,0,0,38">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Ingredients:"
+            						Style="{StaticResource PanoramaItemHeaderTextStyle}"
+            						Grid.Row="0"/>
+                            </Grid>
+                        </DataTemplate>
+                    </phone:LongListSelector.ListHeaderTemplate>
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Amount}"/>
+                                <TextBlock Text="{Binding IngredientName}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+
+            </StackPanel>
+            <StackPanel Height="358">
+                <phone:LongListSelector Height="358" ItemsSource="{Binding Steps.RecipeStepItems}">
+                    <phone:LongListSelector.ListHeaderTemplate >
+                        <DataTemplate>
+                            <Grid Margin="12,0,0,38">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Steps:"
+            						Style="{StaticResource PanoramaItemHeaderTextStyle}"
+            						Grid.Row="0"/>
+                            </Grid>
+                        </DataTemplate>
+                    </phone:LongListSelector.ListHeaderTemplate>
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="12,2,0,4" Height="105" Width="432">
+                                <!--Replace rectangle with image-->
+                                <Image Source="{Binding Image}"  Width="199" Height="199" Stretch="UniformToFill" />                                    
+                                <StackPanel Width="311" Margin="8,-7,0,0">
+                                    <TextBlock  Text="{Binding Description}" TextWrapping="Wrap" Margin="10,0" Style="{StaticResource PhoneTextLargeStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                    <TextBlock Text="{Binding Duration}" TextWrapping="Wrap" Margin="10,-2,10,0" Style="{StaticResource PhoneTextSubtleStyle}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+            </StackPanel>
+
+
+        </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="148*"/>
-                <ColumnDefinition Width="309*"/>
-            </Grid.ColumnDefinitions>
-            <phone:LongListSelector Margin="0,-38,-22,2" ItemsSource="{Binding Ingredients.IngredientItems}" Grid.ColumnSpan="2">
-                <phone:LongListSelector.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Margin="12,2,0,4" Height="105" Width="432">
-                            <StackPanel Width="311" Margin="8,-7,0,0">
-                                <TextBlock Text="{Binding IngrediantName}" TextWrapping="Wrap" Margin="10,0" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" />
-                                <TextBlock Text="{Binding Amount}" TextWrapping="Wrap" Margin="10,-2,10,0" Style="{StaticResource PhoneTextSubtleStyle}" />
-                            </StackPanel>
-                        </StackPanel>
-                    </DataTemplate>
-                </phone:LongListSelector.ItemTemplate>
-            </phone:LongListSelector>
 
-            <phone:LongListSelector Margin="0,-38,-22,2" ItemsSource="{Binding Steps.RecipeStepItems}" Grid.ColumnSpan="2">
-                <phone:LongListSelector.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Margin="12,2,0,4" Height="105" Width="432">
-                            <!--Replace rectangle with image-->
-                            <Image Source="{Binding Image}"  Width="199" Height="199" />
-                            <StackPanel Width="311" Margin="8,-7,0,0">
-                                <TextBlock  Text="{Binding Description}" TextWrapping="Wrap" Margin="10,0" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" />
-                                <TextBlock Text="{Binding Duration}" TextWrapping="Wrap" Margin="10,-2,10,0" Style="{StaticResource PhoneTextSubtleStyle}" />
-                            </StackPanel>
-                        </StackPanel>
-                    </DataTemplate>
-                </phone:LongListSelector.ItemTemplate>
-            </phone:LongListSelector>
-        </Grid>
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar Mode="Default" Opacity="1.0" IsMenuEnabled="False" IsVisible="True">
-            <shell:ApplicationBarIconButton x:Name="SubmitIcon" IconUri="/Images/check.png" Text="Finish" Click="SubmitIcon_Click" />
             <shell:ApplicationBarIconButton x:Name="BackIcon" IconUri="/Images/back.png" Text="Finish" Click="BackIcon_Click" />
+            <shell:ApplicationBarIconButton x:Name="SubmitIcon" IconUri="/Images/check.png" Text="Finish" Click="SubmitIcon_Click" />
             <shell:ApplicationBarIconButton x:Name="ExitIcon" IconUri="/Images/cancel.png" Text="Exit" Click="ExitIcon_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

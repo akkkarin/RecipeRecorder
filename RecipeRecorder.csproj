@@ -133,7 +133,6 @@
     <Compile Include="ViewModel\IngredientsViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RecipeStepsViewModel.cs" />
-    <Compile Include="ViewModel\RecipesViewModel.cs" />
     <Compile Include="ViewModel\RecipeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

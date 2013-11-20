@@ -79,6 +79,15 @@ namespace RecipeRecorder.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data Source=isostore:/RecipeLocalDB.sdf.
+        /// </summary>
+        public static string DBConnectionString {
+            get {
+                return ResourceManager.GetString("DBConnectionString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description of this step.
         /// </summary>
         public static string DescriptionHandsup {

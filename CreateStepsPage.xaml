@@ -37,7 +37,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Text="My favorates"
+                            <TextBlock Text="Steps"
                                            Style="{StaticResource PanoramaItemHeaderTextStyle}"
                                            Grid.Row="0"/>
                         </Grid>

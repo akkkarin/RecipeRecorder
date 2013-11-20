@@ -15,8 +15,7 @@ namespace RecipeRecorder
         public OverviewPage()
         {
             InitializeComponent();
-            DataContext = App.RecipeViewModel;
-            debugger(App.RecipeViewModel.Ingredients.RecipeName);
+            DataContext = App.RecipeViewModel; 
         }
 
         private void debugger(string message)
@@ -34,7 +33,7 @@ namespace RecipeRecorder
         private void SubmitIcon_Click(object sender, EventArgs e)
         { 
             App.RecipeViewModel.SaveRecipe();
-            this.debugger(App.RecipeViewModel.TestDB());
+            this.debugger("You just created a recipe: "+App.RecipeViewModel.TestDB());
         }
 
         private void BackIcon_Click(object sender, EventArgs e)

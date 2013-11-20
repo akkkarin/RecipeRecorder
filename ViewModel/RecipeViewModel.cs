@@ -22,6 +22,7 @@ namespace RecipeRecorder.ViewModel
             this._ingredients = new IngredientsViewModel();
             this._steps = new RecipeStepsViewModel();
         }
+         
         public RecipeViewModel(string db)
         {
             this._ingredients = new IngredientsViewModel();

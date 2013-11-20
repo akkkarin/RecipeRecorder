@@ -140,4 +140,7 @@
   <data name="DurationHandsup" xml:space="preserve">
     <value>Duration of this step</value>
   </data>
+  <data name="DBConnectionString" xml:space="preserve">
+    <value>Data Source=isostore:/RecipeLocalDB.sdf</value>
+  </data>
 </root>
